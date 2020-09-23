@@ -2,4 +2,4 @@
 
 # Screenshots
 
-<img src="C:\Users\rishu\OneDrive\Desktop\Screenshot.png"     alt="Markdown Monster icon"     style="float: center; margin-right: 10px;" />
+<img src="Screenshots/image1.png"     alt="Markdown Monster icon"     style="float: center; margin-right: 10px;" />
