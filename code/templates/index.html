@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+
+		<title>Compass Starter by Ariona, Rian</title>
+		<style>
+		@font-face{
+	    font-family: customfont
+	    src: "{{ url_for('static',filename='fonts/Roboto.ttf') }} ";
+   	}
+		</style>
+		<!-- Loading third party fonts
+		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css"> -->
+
+		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+		<!-- Loading main css file -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<!--		<link rel="stylesheet" href="/templates/style.css"> -->
+
+		<!--[if lt IE 9]>
+		<script src="js/ie-support/html5.js"></script>
+		<script src="js/ie-support/respond.js"></script>
+		<![endif]-->
+
+	</head>
+
+
+	<body>
+
+		<div class="site-content">
+			<div class="site-header">
+				<div class="container">
+					<h1 class="site-title" style="font-size: 50px">  What's the weather like?</h1>
+				</div>
+			</div> <!-- .site-header -->
+
+			<div class="hero" data-bg-image="{{url_for('static', filename='background.jpg')}}">
+				<div class="container">
+					<form method="post" class="find-location">
+						<input type="text" id="city" name="city" placeholder="Find your location...">
+						<input type="submit" value="Find">
+					</form>
+				</div>
+			<br> <br> <br> <br><br> <br>
+			<div class="forecast-table">
+				<div class="container">
+					<div class="forecast-container">
+						<div class="today forecast">
+							<div class="forecast-header">
+								<div class="day">{{ weather[0].day }}</div>
+								<div class="date">{{ weather[0].date }}</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="location" style="font-size: 40px"><strong> {{ weather[0].city }} </strong></div>
+								<div class="degree">
+									<div class="num" style="font-size: 70px">{{ weather[0].temperature }}<sup>o</sup>C</div>
+									<div class="forecast-icon">
+									<!--	<img src="{{url_for('static', filename='icons/icon-1.svg')}}" width=90> -->
+										<img src="http://openweathermap.org/img/w/{{ weather[0].icon }}.png" alt="" width=90>
+									</div>
+								</div>
+
+								<span><img src="{{url_for('static', filename='con-umberella.png')}}" alt="">{{ weather[0].humidity }}%</span>
+								<span><img src="{{url_for('static', filename='icon-wind.png')}}" alt=""> {{ '%0.2f' % (weather[0].speed*3.6)|float }} km/h</span>
+								<span><img src="{{url_for('static', filename='icon-compass.png')}}" alt="">{{ weather[0].direction }}</span>
+								<span>{{ weather[0].description }}</span>
+							</div>
+						</div>
+
+						{%for i in range(1,5)%}
+
+						<div class="forecast">
+							<div class="forecast-header">
+								<div class="day">{{ weather[i].day }}</div>
+								<div class="date">{{ weather[i].date }}</div>
+							</div> <!-- .forecast-header -->
+							<div class="forecast-content">
+								<div class="forecast-icon">
+									<img src="http://openweathermap.org/img/w/{{ weather[i].icon }}.png" alt="" width=48>
+								</div>
+								<div class="degree">{{ weather[i].temperature }}<sup>o</sup>C</div>
+								<small>{{ weather[i].humidity }}%</small>
+								<br><br>
+								<small>{{ weather[i].description }}</small>
+							</div>
+						</div>
+
+						{%endfor%}
+
+
+
+					</div>
+				</div>
+			</div>
+			</div>
+
+
+			<footer class="site-footer" style="padding: 10px; margin: 0">
+				<div class="container">
+					<center>
+					  <p class="colophon">If you like the website or have any queries feel free to contact me on linkedIn by clicking <a href = "https://www.linkedin.com/in/rishabh-ostwal/" target="_blank">here</a></p>
+					</center
+				</div>
+			</footer> <!-- .site-footer -->
+		</div>
+
+		<script src="{{ url_for('static',filename='jquery-1.11.1.min.js') }}"> </script>
+		<script src="{{ url_for('static',filename='plugins.js') }}"> </script>
+		<script src="{{ url_for('static',filename='app.js') }}"> </script>
+
+	</body>
+
+</html>
